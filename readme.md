@@ -16,7 +16,7 @@ Andres Ortiz
 1. Clone the repository:
    ```bash
    git clone https://github.com/AndresO7/Pico-PlacaExercise.git
-   cd Pico-PlacaExercise-main
+   cd Pico-PlacaExercise
    ```
 
 2. Install the dependencies:
