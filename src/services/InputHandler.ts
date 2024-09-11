@@ -1,6 +1,8 @@
 import readline from "readline";
+import { Validator } from "../utils/Validator";
 
 export class InputHandler {
+  // Creates a readline interface for user input/output
   private rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
@@ -25,10 +27,8 @@ export class InputHandler {
     let plateNumber: string;
 
     while (true) {
-      plateNumber = await this.askQuestion(
-        "Enter the plate number (e.g., PBX-1234): "
-      );
-      if (this.isValidPlateNumber(plateNumber)) {
+      plateNumber = await this.askQuestion("Enter the plate number (e.g., PBX-1234): ");
+      if (Validator.isValidPlateNumber(plateNumber)) {
         break;
       } else {
         console.log("Invalid plate number. It must be in the format PBX-1234.");
@@ -48,7 +48,7 @@ export class InputHandler {
 
     while (true) {
       date = await this.askQuestion("Enter the date (YYYY-MM-DD): ");
-      if (this.isValidDate(date)) {
+      if (Validator.isValidDate(date)) {
         break;
       } else {
         console.log("Invalid date. It must be in the format YYYY-MM-DD.");
@@ -68,12 +68,10 @@ export class InputHandler {
 
     while (true) {
       time = await this.askQuestion("Enter the time (HH:MM, 24-hour format): ");
-      if (this.isValidTime(time)) {
+      if (Validator.isValidTime(time)) {
         break;
       } else {
-        console.log(
-          "Invalid time. It must be in the format HH:MM (24-hour format)."
-        );
+        console.log("Invalid time. It must be in the format HH:MM (24-hour format).");
       }
     }
 
@@ -85,38 +83,5 @@ export class InputHandler {
    */
   public close(): void {
     this.rl.close();
-  }
-
-  /**
-   * Validates the format of a plate number.
-   *
-   * @param plateNumber - The plate number to validate.
-   * @returns True if the plate number is in the correct format, false otherwise.
-   */
-  private isValidPlateNumber(plateNumber: string): boolean {
-    const plateRegex = /^[A-Z]{3}-\d{3,4}$/;
-    return plateRegex.test(plateNumber);
-  }
-
-  /**
-   * Validates the format and value of a date.
-   *
-   * @param date - The date to validate.
-   * @returns True if the date is in the correct format and is a valid date, false otherwise.
-   */
-  private isValidDate(date: string): boolean {
-    const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
-    return dateRegex.test(date) && !isNaN(new Date(date).getTime());
-  }
-
-  /**
-   * Validates the format of a time.
-   *
-   * @param time - The time to validate.
-   * @returns True if the time is in the correct format, false otherwise.
-   */
-  private isValidTime(time: string): boolean {
-    const timeRegex = /^([01]\d|2[0-3]):([0-5]\d)$/;
-    return timeRegex.test(time);
   }
 }
