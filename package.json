@@ -1,0 +1,28 @@
+{
+  "name": "pico_y_placa",
+  "version": "1.0.0",
+  "description": "A 'Pico y Placa' predictor that takes a license plate number, date, and time as input, and determines if the vehicle can be on the road.",
+  "main": "./src/index.ts",
+  "scripts": {
+    "test": "npx jest",
+    "start": "ts-node src/index.ts",
+    "dev": "ts-node src/index.ts"
+  },
+  "keywords": [
+    "pico_placa"
+  ],
+  "author": "Ortiz Andres",
+  "license": "ISC",
+  "devDependencies": {
+    "@eslint/js": "^9.10.0",
+    "@types/jest": "^29.5.12",
+    "@types/supertest": "^6.0.2",
+    "eslint": "^9.10.0",
+    "globals": "^15.9.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.2.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.2",
+    "typescript-eslint": "^8.5.0"
+  }
+}
