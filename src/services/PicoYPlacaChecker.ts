@@ -12,9 +12,11 @@ export class PicoYPlacaChecker {
    * @returns A message indicating whether the vehicle can drive or not.
    */
   public check(plateNumber: string, date: string, time: string): string {
-
+    // Adjust the date to be local to Quito (UTC-5)
     const parsedDate = new Date(date);
-    parsedDate.setHours(parsedDate.getHours());
+
+    // Manually adjust timezone from UTC to UTC-5 (Quito)
+    parsedDate.setHours(parsedDate.getHours() + 5); // Quito is UTC-5
 
     // Check if the vehicle can drive based on the rules
     const canDrive = this.rules.canDrive(plateNumber, parsedDate, time);
